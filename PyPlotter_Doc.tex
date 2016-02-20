@@ -25,6 +25,7 @@
 
 \tableofcontents{}
 
+\newpage
 
 \section{Introduction}
 
@@ -63,6 +64,20 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+\newpage
+
+\section{Screenshots}
+
+Here are two sample screenshots form a program using PyPlotter:
+
+\begin{center}
+\includegraphics[width=9cm,keepaspectratio]{screenshots/coopsim_eco.png}
+\end{center}
+
+\begin{center}
+\includegraphics[width=9cm,keepaspectratio]{screenshots/coopsim_simplex.png}
+\end{center}
 
 \section{Quick Tutorial}
 
@@ -113,7 +128,7 @@ Since Version 0.8.7 of PyPlotter the same can be done even simpler:
 3:  gr = Graph.Cartesian(Graph.AUTO_GFX, -4.0, -2.0, 4.0, 2.0)    
 4:  for x in gr.xaxisSteps(-4.0, 4.0):
 5:       gr.addValue("sin(x)", x, math.sin(x))
-6: gr.gfx.waitUntilClosed()
+6:  gr.gfx.waitUntilClosed()
 \end{verbatim}
 
 
