@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+
+<title>PyPlotter - A Python/Jython Graph Plotting Package: 6  Implementing a new device driver for PyPlotter</title>
+
+<meta name="author"       content=" Eckhart Arnold " />
+
+
+<meta name="date"         content="September, 6th 2015" />
+<meta name="robots"       content="follow" />
+
+<meta http-equiv="content-type"        content="text/html; charset=UTF-8" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-style-type"  content="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" type="text/css" href="PyPlotter_Doc.css" />
+<link rel="top" href="PyPlotter_Doc.html" />
+<link rel="contents" href="toc.html" />
+<link rel="prev" href="node10.html" />
+
+</head>
+
+<body style="background-color:white">
+
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="0"
+ summary="page heading">
+<tr>
+<td class="title">
+<h1 style="text-align:center;">
+<span id="pagetop">PyPlotter - A Python/Jython Graph Plotting Package. Manual</span>
+</h1>
+</td>
+</tr>
+</table>
+
+<div class="authorref"><a href="http://eckhartarnold.de">Eckhart Arnold</a></div>
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="0" summary="navigation bar">
+<tr>
+<td class="toplink" style="text-align:left; width:122px;" valign="middle"><a class="internal" href="node10.html"><img width="40" height="40" border="0" align="middle" src="prevgrey.jpg" alt="previous" /></a><a class="internal" href="toc.html"><img width="40" height="40" border="0" align="middle" src="upgrey.jpg" alt="up" /></a><td class="toplink" style="text-align:right;" valign="middle"><a class="internal" href="toc.html">Contents</a></td>
+</tr>
+</table>
+
+<hr noshade="noshade" />
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="0" summary="abbreviated table of contents">
+<tr><td class="toc"><a class="internal" href="node1.html">1  Introduction</a></td></tr>
+<tr><td class="toc"><a class="internal" href="node2.html">2  License </a></td></tr>
+<tr><td class="toc"><a class="internal" href="node3.html">3  Screenshots</a></td></tr>
+<tr><td class="toc"><a class="internal" href="node4.html">4  Quick Tutorial</a></td></tr>
+<tr><td class="toc"><a class="internal" href="node7.html">5  Reference</a></td></tr>
+<tr><td class="tochilit"><b><a class="internal" href="node11.html">6  Implementing a new device driver for PyPlotter</a></b></td></tr>
+</table>
+
+<hr noshade="noshade" />
+<h2>6  Implementing a new device driver for PyPlotter</h2>
+
+<p>
+Adapting PyPlotter to a new GUI enviroment or to a new output device 
+is very easy. You only have to implement a class for the driver itself 
+that is derived from <kbd>Gfx.Driver</kbd> and, optionally, also another 
+very simple standardized window class to open an output window (or 
+context) on your GUI or device. The latter class must be derived from 
+class <kbd>Gfx.Window</kbd>.
+</p>
+<p>
+The driver class must implement the following methods from its parent 
+class <kbd>Gfx.Drivers</kbd>: <kbd>__init__</kbd>, <kbd>resizedGfx</kbd>, 
+<kbd> getSize</kbd>, <kbd>getResolution</kbd>, <kbd>setColor</kbd>, 
+<kbd>setColor</kbd>, <kbd> setLineWidth</kbd>, <kbd>setLinePattern</kbd>, 
+<kbd>setFillPattern</kbd>, <kbd> setFont</kbd>, <kbd>getTextSize</kbd>, 
+<kbd>drawLine</kbd>, <kbd>fillPoly</kbd>, <kbd> writeStr</kbd>. Overriding 
+the other methods or adding further methods is optional and may lead 
+to increased performance.
+</p>
+<p>
+The window class must implement all methods of class <kbd>Gfx.Window</kbd>, 
+that is: <kbd>__init__</kbd>, <kbd>refresh</kbd>, <kbd>quit</kbd>, 
+<kbd> waitUntilClosed</kbd>.
+</p>
+<p>
+The already implemented drivers in modules <kbd>awtGfx</kbd>, <kbd>wxGfx</kbd>, 
+<kbd>tkGfx</kbd>, <kbd>gtkGfx</kbd>, <kbd>qtGfx</kbd> and <kbd>psGfx</kbd> 
+may serve as examples for implementing new drivers.
+</p>
+
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="2" summary="navigation bar">
+<tr>
+<td class="bottomlink" style="text-align:left;" valign="middle"><hr noshade="noshade" /></td>
+<td class="bottomlink" style="text-align:right; width:82px;" valign="middle"><a class="internal" href="node11.html#pagetop"><img width="40" height="40" border="0" align="middle" src="up.jpg" alt="page top" /></a></td>
+</tr>
+</table>
+
+
+
+<p id="share"
+   style="text-align:center; font-family:sans-serif; font-weight:bold;">
+<a href="http://twitter.com/share?url=/node11.html&text=PyPlotter - A Python/Jython Graph Plotting Package: 6  Implementing a new device driver for PyPlotter" target="_blank"
+   class="share-btn twitter">t</a>
+<a href="https://plus.google.com/share?url=/node11.html" target="_blank"
+   class="share-btn google-plus">g+</a>
+<a href="http://www.facebook.com/sharer/sharer.php?u=/node11.html" target="_blank"
+   class="share-btn facebook">f</a>
+<a href="mailto:?subject=PyPlotter - A Python/Jython Graph Plotting Package: 6  Implementing a new device driver for PyPlotter&body=/node11.html" class="share-btn email">@</a>
+</p>
+<br />
+</body>
+
+</html>
+

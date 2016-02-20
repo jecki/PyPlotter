@@ -30,7 +30,7 @@ Cambridge University Press, 1996, p.11-21.)
 """
 
 import random
-import Simplex, Compatibility
+from PyPlotter import Simplex, Compatibility
 GfxDriver = Compatibility.GetDriver()
 print("Using Driver: "+GfxDriver.driverName)
 

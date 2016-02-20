@@ -4,7 +4,7 @@
 
 import random
 
-import Gfx, wxGfx
+from PyPlotter import Gfx, wxGfx
 #from wxPython.wx import *
 import wx
 

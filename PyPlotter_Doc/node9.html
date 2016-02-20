@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+
+<title>PyPlotter - A Python/Jython Graph Plotting Package: 5.2  Class  Graph.Cartesian </title>
+
+<meta name="author"       content=" Eckhart Arnold " />
+
+
+<meta name="date"         content="September, 6th 2015" />
+<meta name="robots"       content="follow" />
+
+<meta http-equiv="content-type"        content="text/html; charset=UTF-8" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-style-type"  content="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" type="text/css" href="PyPlotter_Doc.css" />
+<link rel="top" href="PyPlotter_Doc.html" />
+<link rel="contents" href="toc.html" />
+<link rel="prev" href="node8.html" />
+<link rel="next" href="node10.html" />
+</head>
+
+<body style="background-color:white">
+
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="0"
+ summary="page heading">
+<tr>
+<td class="title">
+<h1 style="text-align:center;">
+<span id="pagetop">PyPlotter - A Python/Jython Graph Plotting Package. Manual</span>
+</h1>
+</td>
+</tr>
+</table>
+
+<div class="authorref"><a href="http://eckhartarnold.de">Eckhart Arnold</a></div>
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="0" summary="navigation bar">
+<tr>
+<td class="toplink" style="text-align:left; width:122px;" valign="middle"><a class="internal" href="node8.html"><img width="40" height="40" border="0" align="middle" src="prevgrey.jpg" alt="previous" /></a><a class="internal" href="node7.html"><img width="40" height="40" border="0" align="middle" src="upgrey.jpg" alt="up" /></a><a class="internal" href="node10.html"><img width="40" height="40" border="0" align="middle" src="nextgrey.jpg" alt="next" /></a><td class="toplink" style="text-align:right;" valign="middle"><a class="internal" href="toc.html">Contents</a></td>
+</tr>
+</table>
+
+<hr noshade="noshade" />
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="0" summary="abbreviated table of contents">
+<tr><td class="toc"><a class="internal" href="node1.html">1  Introduction</a></td></tr>
+<tr><td class="toc"><a class="internal" href="node2.html">2  License </a></td></tr>
+<tr><td class="toc"><a class="internal" href="node3.html">3  Screenshots</a></td></tr>
+<tr><td class="toc"><a class="internal" href="node4.html">4  Quick Tutorial</a></td></tr>
+<tr><td class="toc"><a class="internal" href="node7.html">5  Reference</a></td></tr>
+<tr><td class="toc">&#160;&#160;&#160;&#160;<a class="internal" href="node8.html">5.1  Overview</a></td></tr>
+<tr><td class="tochilit">&#160;&#160;&#160;&#160;<b><a class="internal" href="node9.html">5.2  Class <kbd>Graph.Cartesian</kbd></a></b></td></tr>
+<tr><td class="toc">&#160;&#160;&#160;&#160;<a class="internal" href="node10.html">5.3  Class <kbd>Simplex.Diagram</kbd></a></td></tr>
+<tr><td class="toc"><a class="internal" href="node11.html">6  Implementing a new device driver for PyPlotter</a></td></tr>
+</table>
+
+<hr noshade="noshade" />
+<h3>5.2  Class <kbd>Graph.Cartesian</kbd></h3>
+
+<p>
+Class <kbd>Graph.Cartesian</kbd> is versatile high level class for 
+drawing graphs on a cartesian plain. It supports linear and logarithmic 
+scales and automatic adjustment of the coordinate range as well as 
+automatic captioning.
+</p>
+<dl>
+
+<dt>__init__</dt>
+<dd>(self, gfx, x1, y1, x2, y2, <br />
+ title = &ldquo;Graph&rdquo;, xaxis=&rdquo;X&rdquo;, 
+yaxis=&rdquo;Y&rdquo;, <br />
+ styleFlags = DEFAULT_STYLE, <br />
+ 
+axisPen = Gfx.BLACK_PEN, labelPen = Gfx.BLACK_PEN, <br />
+ titlePen 
+= Gfx.BLACK_PEN, captionPen = Gfx.BLACK_PEN, <br />
+ backgroundPen 
+= Gfx.WHITE_PEN, <br />
+ region = REGION_FULLSCREEN) <br />
+  <br />
+Initializes 
+the class with the following parameters:
+<dl>
+
+<dt>gfx</dt>
+<dd>Gfx.Driver: The Gfx drivers used for drawing the graph. Use AUTO_PEN 
+if you want the Graph.Cartesian object to find a suitable driver (depending 
+on the installed widget toolkits) on its own. <br />&#160;</dd>
+
+<dt>x1,y1,x2,y2</dt>
+<dd>floats: Coordinate range. <br />&#160;</dd>
+
+<dt>title</dt>
+<dd>string: Title string. <br />&#160;</dd>
+
+<dt>xaxis, yaxis</dt>
+<dd>strings: Axis descriptions. <br />&#160;</dd>
+
+<dt>styleFlags</dt>
+<dd>integer: Interpreted as a bitfield of flags that define the style of 
+the graph. The following flags can be set:
+<dl>
+<dt>AXISES, AXIS_DIVISION, FULL_GRID</dt>
+<dd>Draw axises, axis divisions and (or) a full grid. <br />&#160;</dd>
+
+<dt>LABELS, CAPTION, TITLE</dt>
+<dd>Draw axis labels, a caption with descriptions (generated from the pen 
+names) below the graph, a title above the graph. <br />&#160;</dd>
+
+<dt>SHUFFLE_DRAW, EVADE_DRAW</dt>
+<dd>Two different algorithms to allow for the visibility of overlapping 
+graphs. <br />&#160;</dd>
+
+<dt>LOG_X, LOG_Y</dt>
+<dd>Use a logarithmic scale for the x or y axis respectively. <br />&#160;</dd>
+
+<dt>KEEP_ASPECT</dt>
+<dd>Keep the aspect ratio of the coordinates. <br />&#160;</dd>
+
+<dt>AUTO_ADJUST</dt>
+<dd>Automatically adjust the range of the graph when a point is added that 
+falls outside the current range. </dd>
+</dl>
+<br />&#160;</dd>
+
+<dt>axisPen, labelPen, titlePen, captionPen, backgroundPen</dt>
+<dd>Gfx.Pen: Pens (sets of graphical attributes) for the respective elements 
+of the graph. <br />&#160;</dd>
+
+<dt>region</dt>
+<dd>4-tuple of floats. The part of the screen that is used for the graph. 
+Example: (0.05, 0.05, 0.95, 0.95) would leave a border of 5 % of the 
+screen size on each side.
+</dd>
+</dl>
+<br />&#160;</dd>
+
+<dt>adjustRange</dt>
+<dd>(self, x1, y1, x2, y2) - Adjusts the range of the coordinate plane.
+<br />&#160;</dd>
+
+<dt>setStyle</dt>
+<dd>(self, styleFlags=None, axisPen=None, <br />
+ labelPen=None, titlePen=None, 
+captionPen=None, <br />
+ backgroundPen = None) - Changes the style 
+of the graph. Only parameters that are not <kbd>None</kbd> will be 
+changed.
+<br />&#160;</dd>
+
+<dt>setTitle</dt>
+<dd>(self, title) - Changes the title of the graph.
+<br />&#160;</dd>
+
+<dt>setLabels</dt>
+<dd>(self, xaxis=None, yaxis=None) - Changes the labels of the graph.
+<br />&#160;</dd>
+
+<dt>resizedGfx</dt>
+<dd>(self) - Takes notice of a resized window.
+<br />&#160;</dd>
+
+<dt>changeGfx</dt>
+<dd>(self, gfx) - Switch to another device context. This can be useful 
+if you want to draw the current graph into a buffered image that you 
+want to save on a disk. In this case you have to create the buffered 
+image, create the Gfx driver for your buffered image, call changeGfx 
+and then redraw. After that you can call changeGfx to switch back to 
+the former output device.
+<br />&#160;</dd>
+
+<dt>redrawGraph</dt>
+<dd>(self) - Redraws the graph, but not the caption, title or labels.
+<br />&#160;</dd>
+
+<dt>redrawCaption</dt>
+<dd>(self) - Redraw only the caption of the graph.
+<br />&#160;</dd>
+
+<dt>redraw</dt>
+<dd>(self) - Redraws the whole graph including, title, labels and the caption.
+<br />&#160;</dd>
+
+<dt>reset</dt>
+<dd>(self, x1, y1, x2, y2) - Restarts with a new empty graph of the given 
+range. All pens are removed.
+<br />&#160;</dd>
+
+<dt>addPen</dt>
+<dd>(self, name, pen=AUTO_GENERATE_PEN, <br />
+ updateCaption=True) - Adds 
+a new pen with name &ldquo;name&rdquo; and attributes &ldquo;pen&rdquo; 
+to the graph.
+<br />&#160;</dd>
+
+<dt>removePen</dt>
+<dd>(self, name, redraw=True) - Removes a pen from the graph. All coordinate 
+pairs associated with this pen will be discarded.
+<br />&#160;</dd>
+
+<dt>addValue</dt>
+<dd>(self, name, x, y) - Add the point (x,y) to the graph drawn with pen 
+&ldquo;name&rdquo;.
+<br />&#160;</dd>
+
+<dt>peek</dt>
+<dd>(self, x, y) - Returns the graph coordinates of the screen coordinates 
+(x,y)
+<br />&#160;</dd>
+
+<dt>xaxisSteps</dt>
+<dd>(self, x1, x2) - Returns a list of virtual x-coordinates in the range 
+[x1,x2] with one point for each screen pixel. This is especially useful 
+when working with large range logarithmic scales.
+<br />&#160;</dd>
+
+<dt>yaxisSteps</dt>
+<dd>(self, y1, y2) - Returns a list of virtual x-coordinates in the range 
+[y1,y2] with one point for each screen pixel. This is especially useful 
+when working with large range logarithmic scales.
+</dd>
+</dl>
+
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="2" summary="navigation bar">
+<tr>
+<td class="bottomlink" style="text-align:left;" valign="middle"><hr noshade="noshade" /></td>
+<td class="bottomlink" style="text-align:right; width:82px;" valign="middle"><a class="internal" href="node9.html#pagetop"><img width="40" height="40" border="0" align="middle" src="up.jpg" alt="page top" /></a><a class="internal" href="node10.html"><img width="40" height="40" border="0" align="middle" src="next.jpg" alt="next" /></a></td>
+</tr>
+</table>
+
+
+
+<p id="share"
+   style="text-align:center; font-family:sans-serif; font-weight:bold;">
+<a href="http://twitter.com/share?url=/node9.html&text=PyPlotter - A Python/Jython Graph Plotting Package: 5.2  Class  Graph.Cartesian " target="_blank"
+   class="share-btn twitter">t</a>
+<a href="https://plus.google.com/share?url=/node9.html" target="_blank"
+   class="share-btn google-plus">g+</a>
+<a href="http://www.facebook.com/sharer/sharer.php?u=/node9.html" target="_blank"
+   class="share-btn facebook">f</a>
+<a href="mailto:?subject=PyPlotter - A Python/Jython Graph Plotting Package: 5.2  Class  Graph.Cartesian &body=/node9.html" class="share-btn email">@</a>
+</p>
+<br />
+</body>
+
+</html>
+

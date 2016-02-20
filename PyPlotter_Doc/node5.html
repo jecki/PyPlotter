@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+
+<title>PyPlotter - A Python/Jython Graph Plotting Package: 4.1  Example 1: Plotting a Graph</title>
+
+<meta name="author"       content=" Eckhart Arnold " />
+
+
+<meta name="date"         content="September, 6th 2015" />
+<meta name="robots"       content="follow" />
+
+<meta http-equiv="content-type"        content="text/html; charset=UTF-8" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-style-type"  content="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" type="text/css" href="PyPlotter_Doc.css" />
+<link rel="top" href="PyPlotter_Doc.html" />
+<link rel="contents" href="toc.html" />
+<link rel="prev" href="node4.html" />
+<link rel="next" href="node6.html" />
+</head>
+
+<body style="background-color:white">
+
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="0"
+ summary="page heading">
+<tr>
+<td class="title">
+<h1 style="text-align:center;">
+<span id="pagetop">PyPlotter - A Python/Jython Graph Plotting Package. Manual</span>
+</h1>
+</td>
+</tr>
+</table>
+
+<div class="authorref"><a href="http://eckhartarnold.de">Eckhart Arnold</a></div>
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="0" summary="navigation bar">
+<tr>
+<td class="toplink" style="text-align:left; width:122px;" valign="middle"><a class="internal" href="node4.html"><img width="40" height="40" border="0" align="middle" src="prevgrey.jpg" alt="previous" /></a><a class="internal" href="node4.html"><img width="40" height="40" border="0" align="middle" src="upgrey.jpg" alt="up" /></a><a class="internal" href="node6.html"><img width="40" height="40" border="0" align="middle" src="nextgrey.jpg" alt="next" /></a><td class="toplink" style="text-align:right;" valign="middle"><a class="internal" href="toc.html">Contents</a></td>
+</tr>
+</table>
+
+<hr noshade="noshade" />
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="0" summary="abbreviated table of contents">
+<tr><td class="toc"><a class="internal" href="node1.html">1  Introduction</a></td></tr>
+<tr><td class="toc"><a class="internal" href="node2.html">2  License </a></td></tr>
+<tr><td class="toc"><a class="internal" href="node3.html">3  Screenshots</a></td></tr>
+<tr><td class="toc"><a class="internal" href="node4.html">4  Quick Tutorial</a></td></tr>
+<tr><td class="tochilit">&#160;&#160;&#160;&#160;<b><a class="internal" href="node5.html">4.1  Example 1: Plotting a Graph</a></b></td></tr>
+<tr><td class="toc">&#160;&#160;&#160;&#160;<a class="internal" href="node6.html">4.2  Example 2: Plotting a simplex diagram</a></td></tr>
+<tr><td class="toc"><a class="internal" href="node7.html">5  Reference</a></td></tr>
+<tr><td class="toc"><a class="internal" href="node11.html">6  Implementing a new device driver for PyPlotter</a></td></tr>
+</table>
+
+<hr noshade="noshade" />
+<h3>4.1  Example 1: Plotting a Graph</h3>
+
+<p>
+In order to see the results of this example, either run the file &ldquo;Example1.py&rdquo; 
+from the PyPlotter directory or enter the following lines at the python 
+command prompt.
+</p>
+<p>
+
+<pre>
+1:  import math
+2:  from PyPlotter import tkGfx as GfxDriver # 'awtGfx' for jython
+3:  from PyPlotter import Graph, Gfx
+4:    
+5:  gfx = GfxDriver.Window(title="Function Plotter")   
+6:  gr = Graph.Cartesian(gfx, -4.0, -2.0, 4.0, 2.0)    
+7:  gr.addPen("sin(x)", Gfx.RED_PEN)
+8:  for x in gr.xaxisSteps(-4.0, 4.0):
+9:       gr.addValue("sin(x)", x, math.sin(x))
+10: gfx.waitUntilClosed()
+
+</pre>
+
+</p>
+<p>
+Thats all! If everything went right you should have seen a nice sine 
+curve on your display. Here is an explanation of what the program does. 
+Line 5 opens a window for graphical output. Then a new cartesian graph 
+is being created in this window. In line 7 a new pen is added to the 
+graph. Before you can draw anything onto the graph, you have to add 
+one or more pens. Every pen is identified by its unique name. By default 
+the graph as a caption where all pens are listed by their names. To 
+actually draw something on the graph, you have to add one or more coordinate 
+pairs to the graph with a given pen. The coordinate pairs of a pen 
+will then be connected with a continuous line in the order they where 
+added to the graph. This is done in line 8 and 9. In line 8 the method 
+<kbd>xaxisSteps</kbd> is called, which returns a list of x values for 
+a given range, each of which corresponds to exactly one pixel on the 
+screen.
+</p>
+<p>
+Since Version 0.8.7 of PyPlotter the same can be done even simpler:
+</p>
+<p>
+
+<pre>
+1:  import math
+2:  from PyPlotter import Graph 
+3:  gr = Graph.Cartesian(Graph.AUTO_GFX, -4.0, -2.0, 4.0, 2.0)    
+4:  for x in gr.xaxisSteps(-4.0, 4.0):
+5:       gr.addValue("sin(x)", x, math.sin(x))
+6:  gr.gfx.waitUntilClosed()
+
+</pre>
+
+<table width="100%" border="0" frame="void" cellpadding="0" cellspacing="2" summary="navigation bar">
+<tr>
+<td class="bottomlink" style="text-align:left;" valign="middle"><hr noshade="noshade" /></td>
+<td class="bottomlink" style="text-align:right; width:82px;" valign="middle"><a class="internal" href="node5.html#pagetop"><img width="40" height="40" border="0" align="middle" src="up.jpg" alt="page top" /></a><a class="internal" href="node6.html"><img width="40" height="40" border="0" align="middle" src="next.jpg" alt="next" /></a></td>
+</tr>
+</table>
+
+
+
+<p id="share"
+   style="text-align:center; font-family:sans-serif; font-weight:bold;">
+<a href="http://twitter.com/share?url=/node5.html&text=PyPlotter - A Python/Jython Graph Plotting Package: 4.1  Example 1: Plotting a Graph" target="_blank"
+   class="share-btn twitter">t</a>
+<a href="https://plus.google.com/share?url=/node5.html" target="_blank"
+   class="share-btn google-plus">g+</a>
+<a href="http://www.facebook.com/sharer/sharer.php?u=/node5.html" target="_blank"
+   class="share-btn facebook">f</a>
+<a href="mailto:?subject=PyPlotter - A Python/Jython Graph Plotting Package: 4.1  Example 1: Plotting a Graph&body=/node5.html" class="share-btn email">@</a>
+</p>
+<br />
+</body>
+
+</html>
+

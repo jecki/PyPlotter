@@ -8,7 +8,7 @@ coordinate plain.
 """
 
 import math
-import Graph, Gfx, Compatibility
+from PyPlotter import Graph, Gfx, Compatibility
 GfxDriver = Compatibility.GetDriver()
 print("Using Driver: "+GfxDriver.driverName)
 
