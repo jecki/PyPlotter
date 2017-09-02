@@ -1,7 +1,7 @@
 PyPlotter / JyPlotter - A Python / Jython Plotting Library
 ==========================================================
 
-Version: 0.9.4 (February, 19th 2015)
+Version: 0.9.5 (September, 2nd 2017)
 
 (c) 2004 Eckhart Arnold under the MIT License (opensource.org/licenses/MIT)
 
@@ -26,6 +26,10 @@ small footprint. Possible use cases for PyPlotter still are:
 
 - you need a plotting package that works with jython in the java virtual
   machine
+  
+- you need a Python plotting package that can be transpiled to Javascript 
+  (see [transcrypt.org](https://www.transcrypt.org) to be run in an 
+  Internet-Browser
 
 - you need a lightweight graph plotting package with small footprint
   
@@ -44,8 +48,8 @@ Through its own device driver PyPlotter can easily be adapted to
 different graphical user interfaces or output devices. This means that
 the same plotting subroutines can be used in a Jython applet in
 conjunction with the Java AWT or in a standalone application utilizing
-the wxWidgets, gtk or qt tookit.
-
+the wxWidgets, gtk or qt tookit or in an Internet-Application transpiled
+with [transcrypt.org](https://www.transcrypt.ort)
 
 Installation Instructions
 -------------------------

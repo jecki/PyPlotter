@@ -1,3 +1,10 @@
+PyPlotter Version 0.9.5 (2.9.2017)
+..................................
+
+added support for HTML 5 canvas element (for use with the transcrypt.org 
+Python to Javascript transpiler)
+
+
 PyPlotter Version 0.9.4 (19.2.2016)
 ...................................
 

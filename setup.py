@@ -4,7 +4,7 @@ with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name="JyPlotter",
-      version="0.9.4",
+      version="0.9.5",
       description="Graph plotting library with backends for different GUIs",
       long_description=long_description,
       author="Eckhart Arnold",
