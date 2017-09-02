@@ -42,7 +42,7 @@ class Driver(Gfx.Driver):
     def colorStr(self, rgbTuple):
         """rgbTuple -> string (eg. '#A0A0F3')"""
         def hex(c):
-            ci = int(round(c*255))
+            ci = max(0, min(255, int(round(c*255))))
             hdigits = "0123456789ABCDEF"
             return hdigits[ci // 16] + hdigits[ci % 16]
         return "#" + hex(rgbTuple[0]) + hex(rgbTuple[1]) + hex(rgbTuple[2])
@@ -144,6 +144,7 @@ class Driver(Gfx.Driver):
     #     # self.context.restore();
                                      
     def drawLine(self, x1, y1, x2, y2):
+        self.context.beginPath()        
         self.context.moveTo(x1, self.h - y1 - 1)
         self.context.lineTo(x2, self.h - y2 - 1)
         self.context.stroke()
@@ -159,7 +160,6 @@ class Driver(Gfx.Driver):
             self.context.beginPath()
             for x, y in array:
                 self.context.lineTo(x, self.h - y - 1)
-            # self.context.closePath()
             self.context.stroke()
 
         
@@ -172,7 +172,6 @@ class Driver(Gfx.Driver):
             self.context.beginPath()
             for x, y in array:
                 self.context.lineTo(x, self.h - y - 1)
-            # self.context.closePath()
             self.context.fill()
 
     def writeStr(self, x, y, text, rotationAngle=0.0):
