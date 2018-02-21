@@ -16,4 +16,6 @@ __pycache__
 *.dvi
 Test_Postscript.eps
 *.class
-
+.idea
+external_resources
+__javascript__

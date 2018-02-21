@@ -86,3 +86,4 @@ def GetDriver(check=["qtGfx", "gtkGfx", "wxGfx", "tkGfx", "awtGfx"]):
     raise ImportError("Could not find a graphics drivers for PyPlotter!\n\n")
     __pragma__('noskip')
     import canvasGfx
+    return canvasGfx
