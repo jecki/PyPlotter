@@ -1,6 +1,9 @@
 __pycache__
 .project
 .pydevproject
+.git
+.mypy_cache
+.vscode
 /__bugreports/
 *~
 .settings

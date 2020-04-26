@@ -26,13 +26,13 @@ except ImportError:
 ########################################################################
 
 THIN="thin"; MEDIUM="medium"; THICK="thick"             # pen size
-CONTINUOUS="continuous"; DASHED="dashed"; DOTTED="dotted"# line style
+CONTINUOUS="continuous"; DASHED="dashed"; DOTTED="dotted"  # line style
 SOLID="solid"; PATTERN_A="patternA"                     # fill style
 PATTERN_B="patternB"; PATTERN_C="patternC"
 PATTERNED="patternA"
 SANS="sans"; SERIF="serif"; FIXED="fixed"               # font style
 SMALL="small"; NORMAL="normal"; LARGE="large"           # font size
-PLAIN = ""; BOLD = "b"; ITALIC="i"; BOLDITALIC="bi"    # font weight
+PLAIN = ""; BOLD = "b"; ITALIC="i"; BOLDITALIC="bi"     # font weight
 
 
 ########################################################################
@@ -67,7 +67,7 @@ class Pen(object):
     """
 
     __slots__ = ('color', 'lineWidth', 'linePattern', 'fillPattern',
-		         'fontType', 'fontSize', 'fontWeight')
+                 'fontType', 'fontSize', 'fontWeight')
 
     def __repr__(self):
         return "Pen(" + repr(self.color) + "," \
@@ -261,8 +261,8 @@ class Driver(object):
         """Clears a region (4-tuple: (x1,y1,x2,y2)) of the painting area."""
         saveColor = self.color
         savePattern = self.fillPattern
-        self.setColor(rgbTuple)        
-        self.setFillPattern(SOLID)        
+        self.setColor(rgbTuple)
+        self.setFillPattern(SOLID)
         self.fillRect(region[0], region[1],
                       region[2]-region[0]+1, region[3]-region[1]+1)
         self.setColor(saveColor)
@@ -292,7 +292,7 @@ class Driver(object):
             for p1 in array[1:]:
                 self.drawLine(p0[0], p0[1], p1[0], p1[1])
                 p0 = p1
-                
+
     def _circle(self, x, y, r, func):
         """Internal function: Calculates a circle and draws it via 'func' where
         'func' is a function that takes a list of (x,y) points like for example
@@ -303,7 +303,7 @@ class Driver(object):
                   for i in range(N)]
         points.append(points[0])
         func(points)
-                
+
     def drawCircle(self, x, y, r):
         """Draws a circle with center 'x','y' and radius 'r'."""
         self._circle(x, y, r, self.drawPoly)
@@ -477,7 +477,7 @@ class nilDriver(Driver):
     def fillPoly(self, array):
         pass
     def fillCircle(self, x, y, r):
-        pass    
+        pass
     def writeStr(self, x, y, str, rotationAngle=0.0):
         pass
 
@@ -495,6 +495,10 @@ class Window(Driver):
 
     def refresh(self):
         """Refreshes the display."""
+        raise NotImplementedError
+
+    def execute_after(self, millisecs, func):
+        """Runs `func()` after `millisecs` time has elapsed."""
         raise NotImplementedError
 
     def quit(self):

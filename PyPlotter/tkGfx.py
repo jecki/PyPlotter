@@ -1,7 +1,7 @@
-# tkGfx -    Implementation of the Gfx.Driver Interface in a 
+# tkGfx -    Implementation of the Gfx.Driver Interface in a
 #    tkinter enviroment
 
-"""Implements Gfx.Driver using tkInter. 
+"""Implements Gfx.Driver using tkInter.
 
 Has some flaws! Specifically rotated text is not yet implemented properly.
 """
@@ -64,7 +64,7 @@ class Driver(Gfx.Driver):
     def getSize(self):
         return self.w, self.h
 
-        
+
     def setColor(self, rgbTuple):
         self.color = rgbTuple
         self.fg = self.colorStr(rgbTuple)
@@ -83,8 +83,8 @@ class Driver(Gfx.Driver):
         if pattern == Gfx.CONTINUOUS: self.dash = ""
         elif pattern == Gfx.DASHED: self.dash = "- "
         elif pattern == Gfx.DOTTED: self.dash = ". "
-        else: raise ValueError("'pattern' must be CONTINUOUS, DASHED or DOTTED !")        
-        
+        else: raise ValueError("'pattern' must be CONTINUOUS, DASHED or DOTTED !")
+
     def setFillPattern(self, pattern):
         """Set pattern for filled areas (SOLID or PATTERNED)."""
         self.fillPattern = pattern
@@ -92,7 +92,7 @@ class Driver(Gfx.Driver):
         elif pattern == Gfx.PATTERN_A: self.stipple = "" # needs to be updated
         elif pattern == Gfx.PATTERN_B: self.stipple = ""
         elif pattern == Gfx.PATTERN_C: self.stipple = ""
-        else: raise ValueError("'pattern' must be SOLID or PATTERNED !")        
+        else: raise ValueError("'pattern' must be SOLID or PATTERNED !")
 
 
     def setFont(self, ftype, size, weight):
@@ -113,11 +113,11 @@ class Driver(Gfx.Driver):
         else: self.weight = "bold"
         self.font = tkFont.Font(family = self.family, size = self.size,
                                 weight = self.weight, slant=self.slant)
-        
+
     def getTextSize(self, text):
         return (len(text) * int(self.size)*2/3, int(self.size))   # very inexact
 
-        
+
     def clear(self, rgbTuple = (1.0, 1.0, 1.0)):
         self.canvas.delete("all")
         self.canvas.config(bg = self.colorStr(rgbTuple))
@@ -125,16 +125,16 @@ class Driver(Gfx.Driver):
     def drawPoint(self, x, y):
         self.canvas.create_line(x+1, self.h-y, x+2, self.h-y,
                                 width=self.width, fill=self.fg)
-    
+
     def drawLine(self, x1, y1, x2, y2):
         self.canvas.create_line(x1+1, self.h-y1, x2+1, self.h-y2,
                                 width=self.width, dash=self.dash,
                                 fill=self.fg)
-        
+
     #def drawRect(self, x, y, w, h):
     #   self.canvas.create_rectangle(x, self.h-y, x+w-1, self.h-(y+h-1),
-    #                                 width=self.width, dash=self.dash)      
-    
+    #                                 width=self.width, dash=self.dash)
+
     def fillPoly(self, array):
         if array:
             coords = ()
@@ -150,22 +150,20 @@ class Driver(Gfx.Driver):
                 w *= 1.4
                 xx = x+int(w*math.cos(math.pi*rotationAngle/180.0) - 0.5)
                 yy = y+int(w*math.sin(math.pi*rotationAngle/180.0) - 0.5)
-                
+
                 if rotationAngle >= 315.0: an = "w"
                 elif rotationAngle >= 270.0: an = "nw"
                 elif rotationAngle >= 225.0: an = "n"
                 elif rotationAngle >= 180.0: an = "ne"
                 elif rotationAngle >= 135.0: an = "e"
-                elif rotationAngle >= 90.0: an = "se"                                                                              
+                elif rotationAngle >= 90.0: an = "se"
                 elif rotationAngle >= 45.0: an = "s"
                 else: an = "sw"
                 self.canvas.create_text(xx, self.h-yy,text=str[i],anchor=an,
                                         font = self.font, fill=self.fg)
         else:
             self.canvas.create_text(x+1,self.h-y, text=str, anchor="sw",
-                                    font = self.font, fill=self.fg)            
-
-
+                                    font = self.font, fill=self.fg)
 
 
 ########################################################################
@@ -176,7 +174,7 @@ class Driver(Gfx.Driver):
 
 
 class Window(Driver, Gfx.Window):
-    
+
     def __init__(self, size=(640, 480), title="tkGraph"):
         self.root = Tk()
         self.root.title(title)
@@ -189,6 +187,9 @@ class Window(Driver, Gfx.Window):
     def refresh(self):
         self.root.update()
 
+    def execute_after(self, millisecs, func):
+        self.root.after(millisecs, func)
+
     def quit(self):
         self.root.destroy()
 
@@ -199,8 +200,8 @@ class Window(Driver, Gfx.Window):
         f = open(fileName, "w")
         f.write(self.graph.postscript())
         f.close()
-                
-    
+
+
 ########################################################################
 #
 #   Test
@@ -211,5 +212,5 @@ if __name__ == "__main__":
     import systemTest
     systemTest.Test_tkGfx()
 
-    
+
 

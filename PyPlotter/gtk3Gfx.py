@@ -59,7 +59,7 @@ white = gdk.color_parse("white")
 black = gdk.color_parse("black")
 
 
-class PangoContextWrapper(pango.Context):
+class PangoContextWrapper:
     def __init__(self):
         pass
 
@@ -89,8 +89,9 @@ class Driver(Gfx.Driver):
             self.ctx = None
 
     def resizedGfx(self):
-        pass
-        # self.w, self.h = self.drawable.get_size()
+        if isinstance(self.surface, cairo.ImageSurface):
+            self.w = self.surface.get_width()
+            self.h = self.surface.get_height()
 
     def getSize(self):
         return self.w, self.h
@@ -98,14 +99,8 @@ class Driver(Gfx.Driver):
     def getResolution(self):
         return 100
 
-    def __gdkColor(self, rgbTuple):
-        return gdk.Color(int(round(rgbTuple[0]*65535)),
-                         int(round(rgbTuple[1]*65535)),
-                         int(round(rgbTuple[2]*65535)))
-
     def setColor(self, rgbTuple):
-        self.gc.set_rgb_fg_color(self.__gdkColor(rgbTuple))
-        # self.gc.set_rgb_bg_color(self.__gdkColor(rgbTuple))
+        self.ctx.set_source_rgb(*rgbTuple)
         self.color = rgbTuple
 
     def setLineWidth(self, width):
