@@ -222,8 +222,8 @@ class Driver(Gfx.Driver):
         self.ps.append("%d %d moveto\n"%(x,y))
         if rotationAngle != 0.0:
             self.ps.append("%f rotate\n" % rotationAngle)
-        text = re.sub("\)", "\\)", text)
-        text = re.sub("\(", "\\(", text)
+        text = re.sub(r"\)", "\\)", text)
+        text = re.sub(r"\(", "\\(", text)
         for k, v in SPECIAL_CHARACTERS.items():
             text = re.sub(k, ") show "+v+" glyphshow (", text)
         self.ps.extend(["(", text, ") show\n"])
